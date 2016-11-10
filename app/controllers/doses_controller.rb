@@ -1,6 +1,6 @@
 class DosesController < ApplicationController
   before_action :set_dose, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_cocktail, only: [:new, :create]
   # GET /doses
   # GET /doses.json
   def index
@@ -25,16 +25,10 @@ class DosesController < ApplicationController
   # POST /doses.json
   def create
     @dose = Dose.new(dose_params)
+    @dose.cocktail = @cocktail
+    @dose.save
+    redirect_to cocktail_path(@cocktail)
 
-    respond_to do |format|
-      if @dose.save
-        format.html { redirect_to @dose, notice: 'Dose was successfully created.' }
-        format.json { render :show, status: :created, location: @dose }
-      else
-        format.html { render :new }
-        format.json { render json: @dose.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /doses/1
@@ -64,7 +58,11 @@ class DosesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_dose
-      @dose = Dose.find(params[:id])
+      @dose = Dose.find(params[:cocktail_id])
+    end
+
+    def set_cocktail
+      @cocktail = Cocktail.find(params[:cocktail_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

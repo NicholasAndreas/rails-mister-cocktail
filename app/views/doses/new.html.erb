@@ -1,5 +1,10 @@
 <h1>New Dose</h1>
 
-<%= render 'form', dose: @dose %>
+<%= simple_form_for [@cocktail, @dose] do |f| %>
+<%= f.input :ingredient_id, collection: Ingredient.all, placeholder: "cheese" %>
+<%= f.input :description, placeholder: "15ml" %>
 
-<%= link_to 'Back', doses_path %>
+<%= f.submit "post ingredient", class: "btn btn-primary" %>
+<% end %>
+
+

@@ -7,3 +7,10 @@
 
 <%= link_to 'Edit', edit_cocktail_path(@cocktail) %> |
 <%= link_to 'Back', cocktails_path %>
+<%= link_to 'Add Ingredient', new_cocktail_dose_path(params[:id]) %>
+
+<p>
+    <% @cocktail.doses.each do |dose| %>
+    <%=  dose.description%> of <%= dose.ingredient.name%>
+  <% end %>
+</p>
