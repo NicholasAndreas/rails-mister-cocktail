@@ -18,8 +18,7 @@ class CocktailsController < ApplicationController
   end
 
   # GET /cocktails/1/edit
-  def edit
-  end
+
 
   # POST /cocktails
   # POST /cocktails.json

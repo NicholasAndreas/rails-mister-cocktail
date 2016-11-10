@@ -18,8 +18,6 @@ class IngredientsController < ApplicationController
   end
 
   # GET /ingredients/1/edit
-  def edit
-  end
 
   # POST /ingredients
   # POST /ingredients.json
